@@ -27,7 +27,8 @@
 		"noFallthroughCasesInSwitch": true,
 		"noUncheckedIndexedAccess": true,
 		"strictPropertyInitialization": true,
-		"allowUnreachableCode": false, 
+		"allowUnreachableCode": false,
 		"allowUnusedLabels": false,
+		"noImplicitReturns": true
 	}
 }
