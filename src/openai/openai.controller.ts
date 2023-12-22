@@ -20,15 +20,14 @@ export class OpenaiController {
 
 	@Get('stream-respose')
 	async streamResponse(@Res() res: Response): Promise<Stream<ChatCompletionChunk> | string> {
-		const message = this.openaiService.createUserMessage('Один афоризм');
+		const message = this.openaiService.createUserMessage('Раскажи подробно он доекер compose');
 		const yourStream = await this.openaiService.streamResponse([message]);
-		console.log(yourStream);
 		if (yourStream instanceof Stream) {
 			res.setHeader('Content-Type', 'application/octet-stream');
 			res.setHeader('Content-Disposition', 'attachment; filename=stream.txt');
-			/* for await (const part of yourStream) {
+			for await (const part of yourStream) {
 				process.stdout.write(part.choices[0]?.delta?.content || '');
-			} */
+			}
 			return yourStream;
 		} else {
 			return yourStream.content || 'Нет данных';
