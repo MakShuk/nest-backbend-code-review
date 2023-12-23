@@ -22,7 +22,7 @@ export class OpenaiService {
 		try {
 			const completion = await this.openai.chat.completions.create({
 				messages: messages,
-				model: 'gpt-3.5-turbo',
+				model: 'gpt-3.5-turbo-16k-0613',
 			});
 			if (!completion.choices[0]?.message) throw new Error('openai.chat.completions is undefined');
 			return completion.choices[0]?.message;
