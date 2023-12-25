@@ -1,5 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import OpenAI from 'openai';
+import fs from 'fs';
+
 import {
 	ChatCompletionChunk,
 	ChatCompletionMessage,
@@ -107,7 +109,10 @@ export class OpenaiService {
 	}
 
 	async fileUploads(): Promise<void> {
-		console.log('lol');
+		await this.openai.files.create({
+			file: fs.createReadStream('input.json'),
+			purpose: 'fine-tune',
+		});
 	}
 
 	createUserMessage(message: string): ChatCompletionMessageParam {
