@@ -1,19 +1,31 @@
 {
+	"env": {
+		"es6": true
+	},
 	"root": true,
 	"parser": "@typescript-eslint/parser",
-	"plugins": ["@typescript-eslint"],
+	"parserOptions": {
+		"project": ["./tsconfig.json"],
+		"sourceType": "module",
+		"ecmaVersion": 2023
+	},
+	"plugins": ["@typescript-eslint", "@darraghor/nestjs-typed"],
 	"ignorePatterns": ["*.js", "*.html", "node_modules/"],
 	"extends": [
 		"eslint:recommended",
 		"plugin:@typescript-eslint/eslint-recommended",
 		"plugin:@typescript-eslint/recommended",
-		"plugin:prettier/recommended"
+		"plugin:prettier/recommended",
+		"plugin:@darraghor/nestjs-typed/recommended"
 	],
+
 	"rules": {
 		"@typescript-eslint/ban-types": "warn",
 		"@typescript-eslint/no-unused-vars": ["warn"],
 		"@typescript-eslint/no-explicit-any": "warn",
 		"@typescript-eslint/explicit-function-return-type": ["warn"],
+		"@darraghor/nestjs-typed/controllers-should-supply-api-tags": "off",
+		"@darraghor/nestjs-typed/api-method-should-specify-api-response": "off",
 		"prettier/prettier": [
 			"error",
 			{
