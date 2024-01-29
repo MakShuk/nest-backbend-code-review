@@ -1,0 +1,23 @@
+# Игнорировать все файлы и папки
+*
+
+# Но не игнорировать файл Dockerfile
+!Dockerfile
+
+# Не игнорировать папку src и все ее содержимое
+!src/
+
+# Не игнорировать файл .env
+!.env
+
+# Игнорировать все файлы с расширением .log
+*.log
+
+# Игнорировать папку node_modules и все ее подпапки
+node_modules/**
+
+# Игнорировать файлы, начинающиеся с точки, кроме .env
+.*[!.env]
+
+
+#docker run --name=api-gpt -p 3333:3333 --network home  -d -v C:\development:/opt/app/data gpt_api:latest

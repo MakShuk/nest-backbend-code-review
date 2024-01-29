@@ -13,14 +13,14 @@ export class OpenaiController {
 	async response(): Promise<ExtendedChatCompletionMessage> {
 		const messages = [];
 		messages.push(this.openaiService.createUserMessage('1 афоризм'));
-		const responce = await this.openaiService.response(messages);
-		if (responce.error) console.log('Ошибка');
-		return responce;
+		const response = await this.openaiService.response(messages);
+		if (response.error) console.log('Ошибка');
+		return response;
 	}
 
-	@Get('stream-respose')
+	@Get('stream-response')
 	async streamResponse(@Res() res: Response): Promise<Stream<ChatCompletionChunk> | string> {
-		const message = this.openaiService.createUserMessage('Раскажи подробно он доекер compose');
+		const message = this.openaiService.createUserMessage('Расскажи подробно он докер compose');
 		const yourStream = await this.openaiService.streamResponse([message]);
 		if (yourStream instanceof Stream) {
 			res.setHeader('Content-Type', 'application/octet-stream');
