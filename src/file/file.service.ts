@@ -41,7 +41,6 @@ export class FileService {
 			if (str.slice(-1) !== '/') {
 				return str + '/';
 			}
-
 			return str;
 		}
 
@@ -72,5 +71,19 @@ export class FileService {
 		this.folderAndFileName = [];
 		await this.parsingFileAndFolderName(path);
 		return this.folderAndFileName;
+	}
+
+	extractPathAfterDevelopment(inputPath: string, mainFolder: string): string | null {
+		const developmentLower = mainFolder.toLowerCase();
+		const developmentIndex = inputPath.toLowerCase().indexOf(developmentLower);
+
+		if (developmentIndex !== -1) {
+			const extractedPath = inputPath.substring(developmentIndex + developmentLower.length);
+			const cleanedPath = extractedPath.replace(/^[/\\]+/, '');
+
+			return cleanedPath;
+		} else {
+			return null;
+		}
 	}
 }
