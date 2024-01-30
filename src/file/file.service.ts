@@ -69,21 +69,23 @@ export class FileService {
 
 	async getFinalFolderAndFileObj(path: string): Promise<IFolderAndFileName[]> {
 		this.folderAndFileName = [];
-		await this.parsingFileAndFolderName(path);
+		const finalPath = this.extractPathAfterDevelopment(path, 'development');
+		console.log(finalPath);
+		await this.parsingFileAndFolderName(finalPath);
 		return this.folderAndFileName;
 	}
 
-	extractPathAfterDevelopment(inputPath: string, mainFolder: string): string | null {
-		const developmentLower = mainFolder.toLowerCase();
-		const developmentIndex = inputPath.toLowerCase().indexOf(developmentLower);
+	private extractPathAfterDevelopment(inputPath: string, mainFolder: string): string {
+		const inputPathReplaceSlash = inputPath.replace(/\\/g, '/');
+		const developmentIndex = inputPathReplaceSlash.indexOf(mainFolder);
 
 		if (developmentIndex !== -1) {
-			const extractedPath = inputPath.substring(developmentIndex + developmentLower.length);
+			const extractedPath = inputPath.substring(developmentIndex + mainFolder.length);
 			const cleanedPath = extractedPath.replace(/^[/\\]+/, '');
 
-			return cleanedPath;
+			return `opt/app/data/${cleanedPath}`;
 		} else {
-			return null;
+			throw new Error(`Ошибка получения пути до файла`);
 		}
 	}
 }

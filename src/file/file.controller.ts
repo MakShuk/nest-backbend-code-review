@@ -23,7 +23,7 @@ export class PagesController {
 
 	@Get('all')
 	async getAllFileAndFolder(@Query() data: { path: string }): Promise<IFolderAndFileName[]> {
-		console.log(data.path.replace(/\\/g, '/'));
+		///console.log(this.fileService.extractPathAfterDevelopment(data.path, 'development'));
 		return await this.fileService.getFinalFolderAndFileObj(data.path.replace(/\\/g, '/'));
 	}
 }
