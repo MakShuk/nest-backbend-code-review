@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  api-gpt:
+    image: gpt_api:latest
+    container_name: api-gpt-dc
+    restart: always
+    ports:
+      - 3333:3333
+    volumes:
+      - C:\development:/opt/app/data
+    networks:
+      - home
+networks:
+  home:
+    driver: bridge
