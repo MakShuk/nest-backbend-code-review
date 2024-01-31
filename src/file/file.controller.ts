@@ -12,18 +12,16 @@ export class PagesController {
 
 	@Get('file')
 	async findAll(@Query() data: { path: string }): Promise<string> {
-		console.log('Received cat data:', data.path.replace(/\\/g, '/'));
-		return await this.fileService.getFile(data.path.replace(/\\/g, '/'));
+		return await this.fileService.getFile(data.path);
 	}
 
 	@Get('folder')
 	async findFolderAndFile(@Query() data: { path: string }): Promise<void> {
-		await this.fileService.getAllFilesAndFolders(data.path.replace(/\\/g, '/'));
+		await this.fileService.getAllFilesAndFolders(data.path);
 	}
 
 	@Get('all')
 	async getAllFileAndFolder(@Query() data: { path: string }): Promise<IFolderAndFileName[]> {
-		///console.log(this.fileService.extractPathAfterDevelopment(data.path, 'development'));
-		return await this.fileService.getFinalFolderAndFileObj(data.path.replace(/\\/g, '/'));
+		return await this.fileService.getFinalFolderAndFileObj(data.path);
 	}
 }
