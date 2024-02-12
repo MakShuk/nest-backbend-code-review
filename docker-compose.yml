@@ -2,6 +2,9 @@ version: '3'
 
 services:
   api-gpt:
+    build:
+      context: .
+      dockerfile: Dockerfile
     image: gpt_api:latest
     container_name: api-gpt-dc
     restart: always
