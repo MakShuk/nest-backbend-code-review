@@ -5,7 +5,6 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    image: gpt_api:latest
     container_name: api-gpt-dc
     restart: always
     ports:

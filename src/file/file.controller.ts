@@ -22,6 +22,7 @@ export class PagesController {
 
 	@Get('all')
 	async getAllFileAndFolder(@Query() data: { path: string }): Promise<IFolderAndFileName[]> {
+		console.log('Get all file, path: ', data.path);
 		return await this.fileService.getFinalFolderAndFileObj(data.path);
 	}
 }
