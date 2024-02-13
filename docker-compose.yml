@@ -5,12 +5,12 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: api-gpt-dc
-    restart: always
+    container_name: api-gpt
     ports:
       - 3333:3333
     volumes:
       - C:\development:/opt/app/data
+    restart: always
     networks:
       - home
 networks:
